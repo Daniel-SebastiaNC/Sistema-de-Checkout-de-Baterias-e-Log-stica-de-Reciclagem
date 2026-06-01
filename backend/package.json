@@ -1,0 +1,13 @@
+{
+  "name": "checkout-bateria-reciclagem-backend",
+  "version": "1.0.0",
+  "description": "Backend do Sistema de Checkout de Baterias e Logística de Reciclagem",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

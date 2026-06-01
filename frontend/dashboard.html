@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Moura-Tech Reciclagem</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-logo">
+      <div class="brand-mark"></div>
+      <div class="brand-name">moura<span>.</span></div>
+    </div>
+    <div class="brand-divider"></div>
+    <div class="brand-sub">Reciclagem</div>
+  </div>
+  <nav>
+    <a href="index.html">Checkout</a>
+    <a href="dashboard.html" class="active">Dashboard</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:24px;">
+    <div>
+      <h1 class="page-title" style="margin-bottom:4px;">
+        Dashboard <span class="badge">Impacto</span>
+      </h1>
+      <p class="page-subtitle" style="margin-bottom:0;">
+        Métricas ecológicas e econômicas em tempo real &nbsp;·&nbsp;
+        <span id="status-conexao" style="color:var(--text-muted);font-size:0.82rem;">Carregando...</span>
+      </p>
+    </div>
+    <button id="btn-atualizar" class="btn btn-secondary" style="white-space:nowrap;">
+      Atualizar
+    </button>
+  </div>
+
+  <!-- ── ABAS ── -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="visao-geral">Visão Geral</button>
+    <button class="tab-btn" data-tab="lotes">Lotes de Sucata</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ABA: VISÃO GERAL                                      -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div id="tab-visao-geral" class="tab-content active">
+
+    <!-- ALERTA DE FRETE -->
+    <div id="alerta-frete">
+      <div class="titulo">Lote Cheio — Despachar Caminhão!</div>
+      <div class="subtitulo">
+        O lote atingiu a meta de peso. Acione o retorno do caminhão à fábrica Moura.
+      </div>
+    </div>
+
+    <!-- MÉTRICAS -->
+    <div class="cards-grid">
+      <div class="metric-card verde">
+        <div class="icon">⚙️</div>
+        <div class="valor" id="val-chumbo">—</div>
+        <div class="label">kg de Chumbo Salvo</div>
+      </div>
+      <div class="metric-card verde">
+        <div class="icon">♻️</div>
+        <div class="valor" id="val-plastico">—</div>
+        <div class="label">kg de Plástico Salvo</div>
+      </div>
+      <div class="metric-card amarelo">
+        <div class="icon">💰</div>
+        <div class="valor" id="val-economia" style="font-size:1.4rem;">—</div>
+        <div class="label">Economizado pelos Clientes</div>
+      </div>
+      <div class="metric-card amarelo">
+        <div class="icon">🔋</div>
+        <div class="valor" id="val-vendas">—</div>
+        <div class="label">Total de Vendas</div>
+      </div>
+    </div>
+
+    <!-- LOTE ATIVO -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <div class="card-title" style="margin-bottom:0;">Lote de Sucata Ativo</div>
+        <button id="btn-despachar" class="btn btn-success" disabled>
+          Despachar Lote
+        </button>
+      </div>
+
+      <div id="lote-sem-dados" class="empty" style="display:none;">
+        Nenhum lote ativo encontrado.
+      </div>
+
+      <div id="lote-dados" style="display:none;">
+        <div style="display:flex; gap:24px; flex-wrap:wrap; margin-bottom:20px;">
+          <div>
+            <div class="info-label">Lote</div>
+            <div style="font-weight:700;" id="lote-id">—</div>
+          </div>
+          <div>
+            <div class="info-label">Status</div>
+            <span id="lote-status" class="status-badge coletando">Coletando</span>
+          </div>
+          <div>
+            <div class="info-label">Iniciado em</div>
+            <div style="font-size:0.85rem;" id="lote-criado">—</div>
+          </div>
+        </div>
+
+        <div class="progresso-wrapper">
+          <div class="progresso-header">
+            <span>Peso coletado: <strong id="lote-peso">0 kg</strong></span>
+            <span>Meta: <strong id="lote-meta">500 kg</strong> &nbsp;(<span id="progresso-pct">0%</span>)</span>
+          </div>
+          <div class="progresso-track">
+            <div id="progresso-fill" class="progresso-fill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-visao-geral -->
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ABA: LOTES                                            -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div id="tab-lotes" class="tab-content">
+
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <div class="card-title" style="margin-bottom:0;">Histórico de Lotes</div>
+        <span id="lotes-total-badge" class="status-badge coletando" style="font-size:0.72rem;"></span>
+      </div>
+
+      <div id="historico-vazio" class="empty" style="display:none;">
+        Nenhum lote registrado ainda.
+      </div>
+
+      <div id="historico-lista"></div>
+    </div>
+
+  </div><!-- /tab-lotes -->
+
+</div><!-- /container -->
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
